@@ -10,8 +10,9 @@ import { Navbar } from '../ui/Navbar';
 import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
 import { AddNewFab } from '../ui/AddNewFab';
+import { DeleteEventFab } from '../ui/DeleteEventFab';
 import { uiOpenModalAction } from '../../actions/ui';
-import { setActiveEventAction } from '../../actions/events';
+import { clearActiveEventAction, setActiveEventAction } from '../../actions/events';
 
 moment.locale('es');
 
@@ -19,9 +20,9 @@ const localizer = momentLocalizer(moment);
 
 export const CalendarScreen = () => {
 
-    const dispatch = useDispatch();
+    const { events, activeEvent } = useSelector(state => state.calendar);
 
-    const { events } = useSelector(state => state.calendar)
+    const dispatch = useDispatch();
 
     const [lastView, setLastView] = useState(localStorage.getItem('lastview') || 'month');
 
@@ -36,6 +37,10 @@ export const CalendarScreen = () => {
     const onViewChange = (e) => {
         setLastView(e);
         localStorage.setItem('lastview', e);
+    }
+
+    const onSelectedSlot = (e) => {
+        dispatch(clearActiveEventAction())
     }
 
     const eventStyleGetter = (event, start, end, isSelected) => {
@@ -65,6 +70,8 @@ export const CalendarScreen = () => {
                 onDoubleClickEvent={onDoubleClickEvent}
                 onSelectEvent={onSelectEvent}
                 onView={onViewChange}
+                onSelectSlot={onSelectedSlot}
+                selectable={true}
                 view={lastView}
                 components={{
                     event: CalendarEvent
@@ -72,6 +79,8 @@ export const CalendarScreen = () => {
             />
 
             <AddNewFab />
+
+            { (activeEvent) && <DeleteEventFab /> }
 
             <CalendarModal />
         </div>
