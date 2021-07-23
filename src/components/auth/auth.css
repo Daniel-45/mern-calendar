@@ -1,0 +1,25 @@
+.card-login,
+.card-register {
+    box-shadow: 0 5px 8px 0 #ccc;
+}
+
+.login-container,
+.register-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #fafafa;
+}
+
+.login-form .forget-password {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.register-form .forget-password {
+    color: #0062cc;
+    font-weight: 600;
+    text-decoration: none;
+}
