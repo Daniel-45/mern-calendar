@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2';
 import { types } from '../types/types';
 import { fetchWithoutToken, fetchWithToken } from '../helpers/fetch';
+import { cleanActiveEventLogout } from './events';
 
 export const startLogin = (email, password) => {
     return async (dispatch) => {
@@ -77,6 +78,7 @@ const checkingFinish = () => ({ type: types.authCheckingFinish });
 export const startLogout = () => {
     return (dispatch) => {
         localStorage.clear();
+        dispatch(cleanActiveEventLogout());
         dispatch(logout());
     }
 }

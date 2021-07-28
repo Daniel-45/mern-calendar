@@ -12,7 +12,8 @@ import { CalendarModal } from './CalendarModal';
 import { AddNewFab } from '../ui/AddNewFab';
 import { DeleteEventFab } from '../ui/DeleteEventFab';
 import { uiOpenModalAction } from '../../actions/ui';
-import { clearActiveEventAction, setActiveEventAction } from '../../actions/events';
+import { clearActiveEventAction, eventStartLoadingAction, setActiveEventAction } from '../../actions/events';
+import { useEffect } from 'react';
 
 moment.locale('es');
 
@@ -22,9 +23,15 @@ export const CalendarScreen = () => {
 
     const { events, activeEvent } = useSelector(state => state.calendar);
 
+    const { uid } = useSelector(state => state.auth);
+
     const dispatch = useDispatch();
 
     const [lastView, setLastView] = useState(localStorage.getItem('lastview') || 'month');
+
+    useEffect(() => {
+        dispatch(eventStartLoadingAction());
+    }, [dispatch])
 
     const onDoubleClickEvent = (e) => {
         dispatch(uiOpenModalAction());
@@ -46,7 +53,7 @@ export const CalendarScreen = () => {
     const eventStyleGetter = (event, start, end, isSelected) => {
 
         const style = {
-            backgroundColor: '#367cf7',
+            backgroundColor: (uid === event.user._id) ? '#367cf7' : '#455a64',
             borderRadius: '0px',
             opacity: 0.8,
             display: 'block',
@@ -80,7 +87,7 @@ export const CalendarScreen = () => {
 
             <AddNewFab />
 
-            { (activeEvent) && <DeleteEventFab /> }
+            {(activeEvent) && <DeleteEventFab />}
 
             <CalendarModal />
         </div>

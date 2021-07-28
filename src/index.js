@@ -5,7 +5,7 @@ import { CalendarApp } from './CalendarApp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-    <CalendarApp />,
+  <CalendarApp />,
   document.getElementById('root')
 );
 

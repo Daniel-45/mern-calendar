@@ -1,13 +1,13 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { deleteEventAction } from '../../actions/events';
+import { eventStartDeleteAction } from '../../actions/events';
 
 export const DeleteEventFab = () => {
 
     const dispatch = useDispatch();
 
     const handleDelete = () => {
-        dispatch(deleteEventAction());
+        dispatch(eventStartDeleteAction());
     }
 
     return (

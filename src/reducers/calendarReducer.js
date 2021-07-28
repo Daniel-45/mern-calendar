@@ -1,23 +1,11 @@
-import moment from "moment";
 import { types } from "../types/types";
 
 const initialState = {
-    events: [{
-        id: new Date().getTime(),
-        title: 'Aprender React',
-        start: moment().toDate(),
-        end: moment().add(2, 'hours').toDate(),
-        bgcolor: '#fafafa',
-        notes: 'Dedicar dos horas',
-        user: {
-            _id: '60f9f4eabb3d9e0857e01b44',
-            name: 'Daniel'
-        }
-    }],
+    events: [],
     activeEvent: null
 }
 
-export const calendarReducer = (state= initialState, action) => {
+export const calendarReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case types.eventSetActive:
@@ -25,14 +13,14 @@ export const calendarReducer = (state= initialState, action) => {
                 ...state,
                 activeEvent: action.payload
             }
-        case types.eventAdded:  {
+        case types.eventAdded: {
             return {
                 ...state,
                 events: [
                     ...state.events,
                     action.payload
                 ]
-            }  
+            }
         }
         case types.eventClearActiveEvent:
             return {
@@ -54,6 +42,16 @@ export const calendarReducer = (state= initialState, action) => {
                 ),
                 activeEvent: null
             }
+        case types.eventLoaded:
+            return {
+                ...state,
+                events: [...action.payload]
+            }
+        case types.eventLogout: {
+            return {
+                ...initialState
+            }
+        }
         default:
             return state;
     }

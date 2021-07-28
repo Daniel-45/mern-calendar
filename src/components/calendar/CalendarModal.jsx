@@ -6,7 +6,11 @@ import moment from 'moment';
 import DateTimePicker from 'react-datetime-picker';
 import Swal from 'sweetalert2';
 import { uiCloseModalAction } from '../../actions/ui';
-import { addEventAction, clearActiveEventAction, updateEventAction } from '../../actions/events';
+import {
+    addNewEventAction,
+    clearActiveEventAction,
+    startUpdateEventAction
+} from '../../actions/events';
 import { useEffect } from 'react';
 
 const customStyles = {
@@ -92,20 +96,11 @@ export const CalendarModal = () => {
             })
         }
 
-        // TODO Save to database
-
-        // Temporary to check that a new event is added
+        // Save to database
         if (activeEvent) {
-            dispatch(updateEventAction(formValues));
+            dispatch(startUpdateEventAction(formValues));
         } else {
-            dispatch(addEventAction({
-                ...formValues,
-                id: new Date().getTime(),
-                user: {
-                    _id: '60f9f4eabb3d9e0857e01b44',
-                    name: 'Daniel'
-                }
-            }));
+            dispatch(addNewEventAction(formValues));
         }
 
         closeModal();
@@ -120,7 +115,7 @@ export const CalendarModal = () => {
             className="modal"
             overlayClassName="modal-background"
         >
-            <h2> { (activeEvent) ? 'Editar evento' : 'Nuevo evento' } </h2>
+            <h2> {(activeEvent) ? 'Editar evento' : 'Nuevo evento'} </h2>
             <hr />
             <form className="container" onSubmit={handleSubmitForm}>
 
