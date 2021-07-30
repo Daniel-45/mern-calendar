@@ -11,6 +11,7 @@ yarn-error.log*
 .pnp.js
 
 # testing
+**/test
 /coverage
 
 # production
@@ -26,4 +27,5 @@ yarn-error.log*
 # environment variables files
 .env.development
 .env.production
+.env.test
 

@@ -16,7 +16,7 @@ export const Navbar = () => {
         <div className="navbar navbar-light bg-light mb-4">
             <span className="navbar-brand">{name}</span>
             <button
-                className="btn btn-outline-dark"
+                className="btn btn-outline-danger"
                 onClick={handleLogout}
             >
                 <i className="fas fa-power-off"></i>

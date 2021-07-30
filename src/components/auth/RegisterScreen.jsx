@@ -74,7 +74,7 @@ export const RegisterScreen = () => {
                             <div className="input-group mb-2">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">
-                                        <i class="fas fa-lock"></i>
+                                        <i className="fas fa-lock"></i>
                                     </div>
                                 </div>
                                 <input
@@ -88,7 +88,7 @@ export const RegisterScreen = () => {
                             <div className="input-group mb-2">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">
-                                        <i class="fas fa-lock"></i>
+                                        <i className="fas fa-lock"></i>
                                     </div>
                                 </div>
                                 <input

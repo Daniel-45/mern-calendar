@@ -64,7 +64,7 @@ export const CalendarScreen = () => {
     }
 
     return (
-        <div className="d-flex flex-column vh-100">
+        <div className="d-flex flex-column vh-100 calendar-screen">
             <Navbar />
 
             <Calendar

@@ -18,7 +18,6 @@ export const addNewEventAction = (event) => {
                     _id: uid,
                     name
                 }
-                console.log(event);
                 dispatch(addEventAction(event));
             }
         } catch (error) {
